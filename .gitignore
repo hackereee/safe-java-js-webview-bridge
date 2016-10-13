@@ -1,1 +1,8 @@
 # Created by .ignore support plugin (hsz.mobi)
+*.class
+*.apk
+bin/
+gen/
+.settings/
+proguard/
+build/
