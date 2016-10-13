@@ -1,8 +1,10 @@
 Safe Java-JS WebView Bridge
 ===================
 个人更新：
-作者本身只支持静态方法注入，在activity一些内部方法使用的时候就比较受约束，我这里将注入改为了必须传入对象后进行注入，也就是支持public , public static 等方法的js注入接口，这样我认为更加方便，也更加符合现在的项目，还更改了几处小问题。by hacker.e
-===================
+作者本身只支持静态方法注入，在activity一些内部方法使用的时候就比较受约束，我这里将注入改为了必须传入对象后进行注入，也就是支持public , public static 等方法的js>注入接口，这样我认为更加方便，也更加符合现在的项目，还更改了几处小问题。
+by hacker.eeeee
+
+==================
 抛弃使用高风险的WebView addJavascriptInterface方法，通过对js层调用函数及回调函数的包装，支持异步回调，方法参数支持js所有已知的类型，包括number、string、boolean、object、function。
 
 ## 安装
