@@ -5,8 +5,8 @@ group = GROUP
 
 android {
     compileOptions.encoding = "UTF-8"
-    compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
+    compileSdkVersion 24
+    buildToolsVersion "24.0.0"
 
     defaultConfig {
         minSdkVersion 9

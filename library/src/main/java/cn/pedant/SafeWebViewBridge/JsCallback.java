@@ -12,6 +12,7 @@ import android.util.Log;
 import android.webkit.WebView;
 
 import java.lang.ref.SoftReference;
+import java.lang.ref.WeakReference;
 
 public class JsCallback {
     private static final String CALLBACK_JS_FORMAT = "javascript:%s.callback(%d, %d %s);";
