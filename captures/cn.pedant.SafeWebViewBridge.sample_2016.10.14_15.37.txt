@@ -1,0 +1,37 @@
+TASK cn.pedant.SafeWebViewBridge.sample id=7044
+  ACTIVITY cn.pedant.SafeWebViewBridge.sample/.WebActivity 4d9ede4 pid=16257
+    Local Activity 37c702b State:
+      mResumed=true mStopped=false mFinished=false
+      mChangingConfigurations=false
+      mCurrentConfig={1.0 460mcc7mnc zh_CN ldltr sw360dp w360dp h580dp 480dpi nrml port finger -keyb/v/h -nav/h suim:1 s.33}
+      mLoadersStarted=true
+      FragmentManager misc state:
+        mHost=android.app.Activity$HostCallbacks@e8bdc2a
+        mContainer=android.app.Activity$HostCallbacks@e8bdc2a
+        mCurState=5 mStateSaved=false mDestroyed=false
+    ViewRoot:
+      mAdded=true mRemoved=false
+      mConsumeBatchedInputScheduled=false
+      mConsumeBatchedInputImmediatelyScheduled=false
+      mPendingInputEventCount=0
+      mProcessInputEventsScheduled=false
+      mTraversalScheduled=false
+      android.view.ViewRootImpl$NativePreImeInputStage: mQueueLength=0
+      android.view.ViewRootImpl$ImeInputStage: mQueueLength=0
+      android.view.ViewRootImpl$NativePostImeInputStage: mQueueLength=0
+    Choreographer:
+      mFrameScheduled=false
+      mLastFrameTime=80855428 (14692 ms ago)
+    View Hierarchy:
+      com.android.internal.policy.PhoneWindow$DecorView{11dba1b V.E...... R....... 0,0-1080,1812}
+        com.android.internal.widget.ActionBarOverlayLayout{43ea7b8 V.E...... ........ 0,0-1080,1812 #10203a4 android:id/decor_content_parent}
+          android.widget.FrameLayout{617a991 V.E...... ........ 0,240-1080,1812 #1020002 android:id/content}
+            android.webkit.WebView{4e390f6 VFEDHVC.. .F...... 0,0-1080,1572}
+          com.android.internal.widget.ActionBarContainer{f53dcf7 V.ED..... ........ 0,72-1080,240 #10203a5 android:id/action_bar_container}
+            android.widget.Toolbar{2128764 V.E...... ........ 0,0-1080,168 #10203a6 android:id/action_bar}
+              android.widget.TextView{27c4dcd V.ED..... ........ 48,43-533,124}
+              android.widget.ActionMenuView{82fc682 V.E...... ......ID 1080,0-1080,168}
+            com.android.internal.widget.ActionBarContextView{55f5193 G.E...... ......I. 0,0-0,0 #10203a7 android:id/action_context_bar}
+    Looper (main, tid 1) {2fe527d}
+      Message 0: { when=+1m56s444ms what=2 target=org.chromium.base.SystemMessageHandler }
+      (Total messages: 1, polling=false, quitting=false)

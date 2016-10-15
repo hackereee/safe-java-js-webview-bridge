@@ -6,3 +6,6 @@ gen/
 .settings/
 proguard/
 build/
+.gradle/
+sample/build/
+library/build/

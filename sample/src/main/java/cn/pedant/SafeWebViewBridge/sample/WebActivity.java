@@ -17,15 +17,16 @@ public class WebActivity extends Activity {
         WebSettings ws = wv.getSettings();
         ws.setJavaScriptEnabled(true);
         wv.setWebChromeClient(
-            new CustomChromeClient("HostApp", HostJsScope.class)
+            new CustomChromeClient("HostApp", new HostJsScope())
         );
         wv.loadUrl("file:///android_asset/test.html");
     }
 
     public class CustomChromeClient extends InjectedChromeClient {
 
-        public CustomChromeClient (String injectedName, Class injectedCls) {
-            super(injectedName, injectedCls);
+
+        public CustomChromeClient(String injectedName, Object injectedObj) {
+            super(injectedName, injectedObj);
         }
 
         @Override

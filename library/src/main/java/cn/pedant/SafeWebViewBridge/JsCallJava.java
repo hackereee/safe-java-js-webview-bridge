@@ -77,14 +77,18 @@ public class JsCallJava {
         Class[] argsTypes = method.getParameterTypes();
         int len = argsTypes.length;
         //如果是静态，必须含有webview参数
+        boolean isFirstTypesWebView = argsTypes[0] == WebView.class;
         int index = 0;
-        if ((method.getModifiers() == (Modifier.PUBLIC | Modifier.STATIC)) &&(len < 1 || argsTypes[0] != WebView.class)) {
+        if ((method.getModifiers() == (Modifier.PUBLIC | Modifier.STATIC)) &&(len < 1 || !isFirstTypesWebView)) {
             Log.w(TAG, "method(" + sign
                     + ") must use webview to be first parameter in the static modifiers, will be pass");
             return null;
-        }else if(method.getModifiers() == (Modifier.PUBLIC | Modifier.STATIC)){
+        }
+
+        if(isFirstTypesWebView){
             index = 1;
         }
+
 
 
 
@@ -122,10 +126,9 @@ public class JsCallJava {
                 String sign = methodName;
                 int len = argsTypes.length();
                 Object[] values = new Object[len ];
-                int numIndex = 0;
+//                int numIndex = 0;
                 String currType;
-
-//				values[0] = webView;
+                String numIndexStrs = "";
 
                 for (int k = 0; k < len; k++) {
                     currType = argsTypes.optString(k);
@@ -135,8 +138,11 @@ public class JsCallJava {
                                 .getString(k);
                     } else if ("number".equals(currType)) {
                         sign += "_N";
-                        numIndex = numIndex * 10 + k;
-                    } else if ("boolean".equals(currType)) {
+//                        numIndex = numIndex * 10 + k + 1;
+//                        numIndexStrs +=  numIndexStrs.length() > 0 ? k + "|" : k;
+                        numIndexStrs += k + "|";
+                    } else if ("boolean".equals(currType
+                    )) {
                         sign += "_B";
                         values[k] = argsVals.getBoolean(k);
                     } else if ("object".equals(currType)) {
@@ -159,15 +165,22 @@ public class JsCallJava {
                     return getReturn(jsonStr, 500, "not found method(" + sign
                             + ") with valid parameters");
                 }
+
+                Class[] methodTypes = currMethod.getParameterTypes();
+                boolean isFirstTypesWebView = methodTypes.length > 0 &&   methodTypes[0] == WebView.class;
+
+
                 // 数字类型细分匹配
-                if (numIndex > 0) {
-                    Class[] methodTypes = currMethod.getParameterTypes();
+                if (!TextUtils.isEmpty(numIndexStrs)) {
+                    String[] sliptNumStrs = numIndexStrs.split("\\|");
+
                     int currIndex;
+                    int classIndex ;
                     Class currCls;
-                    while (numIndex > 0) {
-                        //这里作者写错了，我改了 by hacceee
-                        currIndex = numIndex - numIndex * 10;
-                        currCls = methodTypes[currIndex];
+                    for(String numIndexS : sliptNumStrs) {
+                        currIndex = Integer.valueOf(numIndexS);
+                        classIndex = isFirstTypesWebView ? currIndex + 1 : currIndex;
+                        currCls = methodTypes[classIndex];
                         if (currCls == int.class) {
                             values[currIndex] = argsVals.getInt(currIndex);
                         } else if (currCls == long.class) {
@@ -179,17 +192,21 @@ public class JsCallJava {
                             values[currIndex] = argsVals
                                     .getDouble(currIndex);
                         }
-                        numIndex /= 10;
                     }
                 }
 
-                //update by hacceee
-                if (currMethod.getModifiers() == (Modifier.PUBLIC | Modifier.STATIC)) {
+                if(isFirstTypesWebView){
                     Object[] staticValues = new Object[values.length + 1];
                     staticValues[0] = webView;
                     for(int s = 0; s < values.length; s++){
                         staticValues[s + 1] = values[s];
                     }
+                    values = staticValues;
+                }
+
+                //update by hacceee
+                if (currMethod.getModifiers() == (Modifier.PUBLIC | Modifier.STATIC)) {
+
                     return getReturn(jsonStr, 200,
                             currMethod.invoke(null, values));
                 } else {

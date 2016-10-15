@@ -34,7 +34,7 @@ public class HostJsScope {
      * @param webView 浏览器
      * @param message 提示信息
      * */
-    public static void toast (WebView webView, String message) {
+    public  void toast (WebView webView, String message) {
         Toast.makeText(webView.getContext(), message, Toast.LENGTH_SHORT).show();
     }
 
@@ -44,7 +44,7 @@ public class HostJsScope {
      * @param message 提示信息
      * @param isShowLong 提醒时间方式
      * */
-    public static void toast (WebView webView, String message, int isShowLong) {
+    public  void toast (WebView webView, String message, int isShowLong) {
         Toast.makeText(webView.getContext(), message, isShowLong).show();
     }
 
@@ -53,7 +53,7 @@ public class HostJsScope {
      * @param webView 浏览器
      * @param timeStamp js层执行时的时间戳
      * */
-    public static void testLossTime (WebView webView, long timeStamp) {
+    public  void testLossTime (WebView webView, long timeStamp) {
         timeStamp = System.currentTimeMillis() - timeStamp;
         alert(webView, String.valueOf(timeStamp));
     }
